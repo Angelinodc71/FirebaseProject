@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='My ApplicationFragmentsLegacy_2.0'
