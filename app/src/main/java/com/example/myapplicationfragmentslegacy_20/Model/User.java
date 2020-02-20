@@ -6,6 +6,9 @@ public class User {
     public String email;
     public String photoUrl;
 
+    public User(){
+
+    }
     public User(String email, String photoUrl) {
         this.email = email;
         this.photoUrl = photoUrl;

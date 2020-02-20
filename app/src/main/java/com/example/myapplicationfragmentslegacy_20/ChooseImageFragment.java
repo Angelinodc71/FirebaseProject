@@ -40,6 +40,7 @@ public class ChooseImageFragment extends Fragment {
     Button buttonsetPic;
     ImageView imageView;
     NavController navController;
+    MainActivity mainActivity = new MainActivity();
 
     FirebaseUser user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -104,6 +105,7 @@ public class ChooseImageFragment extends Fragment {
                                     .set(new User(FirebaseAuth.getInstance().getCurrentUser().getEmail(),uri.toString())).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
+                                    mainActivity.setStoreState(true);
                                     navController.navigate(R.id.homeFragment);
                                 }
                             });
