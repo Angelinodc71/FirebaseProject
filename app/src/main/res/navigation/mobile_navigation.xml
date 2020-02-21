@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/fragment_sign_in"
-        android:name="com.example.myapplicationfragmentslegacy_20.fragment_sign_in"
+        android:name="com.example.myapplicationfragmentslegacy_20.Sign_in_Fragment"
         android:label="fragment_fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" />
     <fragment
@@ -30,4 +30,9 @@
         android:name="com.example.myapplicationfragmentslegacy_20.InicioFragment"
         android:label="fragment_inicio"
         tools:layout="@layout/fragment_inicio" />
+    <fragment
+        android:id="@+id/signOutFragment"
+        android:name="com.example.myapplicationfragmentslegacy_20.SignOutFragment"
+        android:label="fragment_sign_out"
+        tools:layout="@layout/fragment_sign_out" />
 </navigation>

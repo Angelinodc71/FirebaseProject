@@ -40,12 +40,12 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     public boolean storeState = false;
 
-
     public void setStoreState(boolean storeState) {
         this.storeState = storeState;
     }
 
     private AppBarConfiguration mAppBarConfiguration;
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,27 +79,34 @@ public class MainActivity extends AppCompatActivity {
         final TextView email = header.findViewById(R.id.emailHeader);
 
 
+
         FirebaseAuth.getInstance().addAuthStateListener(new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 FirebaseUser user = firebaseAuth.getInstance().getCurrentUser();
-                DocumentReference docRef = db.collection("users").document(user.getUid());
+                if (user != null) {
+                    DocumentReference docRef = db.collection("users").document(user.getUid());
 
 
-                if(user != null && docRef!=null){
-                    docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            User cuerrentUser = documentSnapshot.toObject(User.class);
-                            Glide.with(MainActivity.this)
-                                    .load(cuerrentUser.photoUrl)
-                                    .circleCrop()
-                                    .into(photo);
-                        }
-                    });
+                    if (docRef != null) {
+                        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                User cuerrentUser = documentSnapshot.toObject(User.class);
 
-                    name.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-                    email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                                if (cuerrentUser!=null) {
+                                    Glide.with(MainActivity.this)
+                                            .load(cuerrentUser.photoUrl)
+                                            .circleCrop()
+                                            .into(photo);
+                                }
+                            }
+                        });
+
+                        name.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                        email.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+                    }
                 }
             }
         });

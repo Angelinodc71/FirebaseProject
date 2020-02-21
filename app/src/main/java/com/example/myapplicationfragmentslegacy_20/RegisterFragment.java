@@ -91,7 +91,7 @@ public class RegisterFragment extends Fragment {
 
     }
 
-    private void actualizarUI(FirebaseUser currentUser) {
+    public void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController.navigate(R.id.chooseImageFragment);
         }

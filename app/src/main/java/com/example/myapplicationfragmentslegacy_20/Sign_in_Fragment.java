@@ -37,7 +37,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class fragment_sign_in extends Fragment {
+public class Sign_in_Fragment extends Fragment {
 
     NavController navController;
     private EditText emailEditText, passwordEditText;
@@ -48,7 +48,7 @@ public class fragment_sign_in extends Fragment {
     private SignInButton googleSignInButton;
 
 
-    public fragment_sign_in() {
+    public Sign_in_Fragment() {
         // Required empty public constructor
     }
 
@@ -90,6 +90,7 @@ public class fragment_sign_in extends Fragment {
             }
         });
     }
+
 
     private void accederConGoogle() {
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(requireActivity(), new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -150,7 +151,7 @@ public class fragment_sign_in extends Fragment {
                 });
     }
 
-    private void actualizarUI(FirebaseUser currentUser) {
+    public void actualizarUI(FirebaseUser currentUser) {
         if(currentUser != null){
             navController.navigate(R.id.homeFragment);
         }

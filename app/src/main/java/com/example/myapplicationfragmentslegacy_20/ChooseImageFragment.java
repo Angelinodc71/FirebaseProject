@@ -36,15 +36,14 @@ import static android.app.Activity.RESULT_OK;
  * A simple {@link Fragment} subclass.
  */
 public class ChooseImageFragment extends Fragment {
-
+RegisterFragment registerFragment;
     Button buttonsetPic;
     ImageView imageView;
     NavController navController;
     MainActivity mainActivity = new MainActivity();
 
-    FirebaseUser user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseStorage mstore;
+    FirebaseUser muser = FirebaseAuth.getInstance().getCurrentUser();
     public ChooseImageFragment() {
         // Required empty public constructor
     }
@@ -106,6 +105,7 @@ public class ChooseImageFragment extends Fragment {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     mainActivity.setStoreState(true);
+                                    muser.reload();
                                     navController.navigate(R.id.homeFragment);
                                 }
                             });

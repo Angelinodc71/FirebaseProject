@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +23,7 @@ import android.widget.Button;
 public class InicioFragment extends Fragment {
     NavController navController;
     Button btnLogin, btnRegister;
+
     public InicioFragment() {
         // Required empty public constructor
     }
@@ -37,8 +40,13 @@ public class InicioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         navController = Navigation.findNavController(view);
         btnLogin =view.findViewById(R.id.buttonToSigIn);
+
+        if (FirebaseAuth.getInstance().getCurrentUser()!=null){
+            navController.navigate(R.id.homeFragment);
+        }
         btnRegister = view.findViewById(R.id.buttonToRegister);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
